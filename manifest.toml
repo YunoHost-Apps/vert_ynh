@@ -1,0 +1,57 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
+packaging_format = 2
+
+id = "vert"
+name = "Vert"
+description.en = "File conversion utility"
+description.fr = "Utilitaire de conversion de fichiers"
+
+version = "1.0~ynh1"
+
+maintainers = ["eric_G"]
+
+[upstream]
+license = "AGPL-3.0"
+website = "https://vert.sh/"
+demo = "https://vert.sh/"
+code = "https://github.com/VERT-sh/VERT"
+
+[integration]
+yunohost = ">= 12.0.9"
+helpers_version = "2.1"
+architectures = "all"
+multi_instance = true
+
+ldap = false
+
+sso = false
+
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
+[resources]
+
+    [resources.sources]
+
+    [resources.sources.main]
+    url = "https://github.com/VERT-sh/VERT/archive/2c8cb1922cf6114890226459bc8813b1dd894210.tar.gz"
+    sha256 = "91bc0cb5f9ca81248abd2982b42d095ebdd82814eb7f64cd318621aefbccefdd"
+
+    # autoupdate.strategy = "latest_github_tag"
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
