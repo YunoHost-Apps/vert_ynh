@@ -7,7 +7,7 @@ name = "Vert"
 description.en = "File conversion utility"
 description.fr = "Utilitaire de conversion de fichiers"
 
-version = "2025.04.26~ynh1"
+version = "2025.05.07~ynh1"
 
 maintainers = ["eric_G"]
 
@@ -44,8 +44,8 @@ ram.runtime = "50M"
     [resources.sources]
 
     [resources.sources.main]
-    url = "https://github.com/VERT-sh/VERT/archive/262b2a3c53135196624edd36783f1ebbcacc6997.tar.gz"
-    sha256 = "21346cfe8d0afc7bc439aaecc7f8ab6ca5e5c1286c5c938be0c9e2dec982a306"
+    url = "https://github.com/VERT-sh/VERT/archive/747fbf2cc8c7bbe5eabfe5343a28bf5eea1acb15.tar.gz"
+    sha256 = "68fd0d95705af56317e147da2110fd0aaac368024eb79895f2bab23fe98fe59e"
     autoupdate.upstream = "https://github.com/VERT-sh/VERT"
     autoupdate.strategy = "latest_github_commit"
 
