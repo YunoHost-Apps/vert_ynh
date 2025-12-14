@@ -1,5 +1,5 @@
 [Unit]
-Description=Vertd
+Description=Vertd, video conversion services
 After=network.target
 
 [Service]
