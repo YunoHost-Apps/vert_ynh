@@ -16,6 +16,7 @@ license = "AGPL-3.0"
 website = "https://vert.sh/"
 demo = "https://vert.sh/"
 code = "https://github.com/VERT-sh/VERT"
+fund = "https://donations.vert.sh"
 
 [integration]
 yunohost = ">= 12.1.17"
