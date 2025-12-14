@@ -7,7 +7,7 @@ name = "Vert"
 description.en = "File conversion utility"
 description.fr = "Utilitaire de conversion de fichiers"
 
-version = "2025.11.27~ynh1"
+version = "2025.12.02~ynh1"
 
 maintainers = ["eric_G"]
 
@@ -18,13 +18,12 @@ demo = "https://vert.sh/"
 code = "https://github.com/VERT-sh/VERT"
 
 [integration]
-yunohost = ">= 12.0.9"
+yunohost = ">= 12.1.17"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
 
 ldap = false
-
 sso = false
 
 disk = "50M"
@@ -44,10 +43,18 @@ ram.runtime = "50M"
     [resources.sources]
 
     [resources.sources.main]
-    url = "https://github.com/VERT-sh/VERT/archive/38ec057eef59b80eab3d8f676d19d030bbe4b7df.tar.gz"
-    sha256 = "62ba0977b2aca5f88c9220d10fa8bddcb56726a5751d349ea88751d0ced520e6"
+    url = "https://github.com/VERT-sh/VERT/archive/f5a56c8dd25e56c08a237eb5e34b3c3faeb1f1a9.tar.gz"
+    sha256 = "2f8a14dd61e38cc591425c9517421c43bcb897932929470bcd59eb4c2068a014"
     autoupdate.upstream = "https://github.com/VERT-sh/VERT"
     autoupdate.strategy = "latest_github_commit"
+
+    [resources.sources.vertd]
+    rename = "vertd"
+    in_subdir = false
+    extract = false
+    url = "https://github.com/VERT-sh/vertd/releases/download/nightly-8abb761889d3138f5b91401a533bc7e7211a99ff/vertd-linux-x86_64"
+    sha256 = "75d7d23ea65b0b5cbbecbfb5dc50a0cdf35543a2f81e40f99f2211f2c1031853"
+    autoupdate.strategy = "latest_github_release"
 
     [resources.system_user]
 
@@ -59,3 +66,9 @@ ram.runtime = "50M"
 
     [resources.apt]
     packages = "ffmpeg"
+
+    [resources.ports]
+    main.default = 24153
+
+    [resources.nodejs]
+    version = "22"
