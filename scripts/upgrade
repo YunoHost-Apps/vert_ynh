@@ -20,7 +20,8 @@ ynh_script_progression "Upgrading source files..."
 
 ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".env"
 
-ynh_setup_source --dest_dir="$install_dir" --source_id="vertd" --full_replace
+ynh_setup_source --dest_dir="$install_dir" --source_id="vertd"
+
 chmod +x "$install_dir/vertd"
 
 #=================================================
