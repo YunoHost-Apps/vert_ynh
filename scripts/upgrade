@@ -7,11 +7,21 @@
 source /usr/share/yunohost/helpers
 
 #=================================================
+# STOP SYSTEMD SERVICE
+#=================================================
+ynh_script_progression "Stopping $app's systemd service..."
+
+ynh_systemctl --service="$app" --action="stop"
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Upgrading source files..."
 
 ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".env"
+
+ynh_setup_source --dest_dir="$install_dir" --source_id="vertd" --full_replace
+chmod +x "$install_dir/vertd"
 
 #=================================================
 # UPDATE A CONFIG FILE
@@ -27,6 +37,10 @@ ynh_script_progression "Upgrading system configurations related to $app..."
 
 ynh_config_add_nginx
 
+ynh_config_add_systemd
+
+yunohost service add "$app" --description="A short description of the app" --log="/var/log/$app/$app.log"
+
 #=================================================
 # INSTALL VERT
 #=================================================
@@ -37,6 +51,13 @@ pushd "$install_dir"
 	ynh_hide_warnings bun install
  	ynh_hide_warnings bun run build
 popd
+
+#=================================================
+# START SYSTEMD SERVICE
+#=================================================
+ynh_script_progression "Starting $app's systemd service..."
+
+ynh_systemctl --service="$app" --action="start"
 
 #=================================================
 # END OF SCRIPT
