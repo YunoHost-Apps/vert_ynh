@@ -40,7 +40,7 @@ ynh_config_add_nginx
 
 ynh_config_add_systemd
 
-yunohost service add "$app" --description="A short description of the app" --log="/var/log/$app/$app.log"
+yunohost service add "$app" --description="Vertd, video conversion services" --log="/var/log/$app/$app.log"
 
 #=================================================
 # INSTALL VERT

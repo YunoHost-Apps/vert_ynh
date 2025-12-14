@@ -15,6 +15,7 @@ ynh_script_progression "Setting up source files..."
 ynh_setup_source --dest_dir="$install_dir"
 
 ynh_setup_source --dest_dir="$install_dir" --source_id="vertd"
+
 chmod +x "$install_dir/vertd"
 
 #=================================================
@@ -35,7 +36,7 @@ ynh_config_add_nginx
 # Create a dedicated systemd config
 ynh_config_add_systemd
 
-yunohost service add "$app" --description="Vertd" --log="/var/log/$app/$app.log"
+yunohost service add "$app" --description="Vertd, video conversion services" --log="/var/log/$app/$app.log"
 
 #=================================================
 # INSTALL VERT
