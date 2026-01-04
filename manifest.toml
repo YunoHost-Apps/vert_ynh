@@ -46,6 +46,7 @@ ram.runtime = "50M"
     [resources.sources.main]
     url = "https://github.com/VERT-sh/VERT/archive/f5a56c8dd25e56c08a237eb5e34b3c3faeb1f1a9.tar.gz"
     sha256 = "2f8a14dd61e38cc591425c9517421c43bcb897932929470bcd59eb4c2068a014"
+    
     autoupdate.upstream = "https://github.com/VERT-sh/VERT"
     autoupdate.strategy = "latest_github_commit"
 
@@ -55,7 +56,9 @@ ram.runtime = "50M"
     extract = false
     url = "https://github.com/VERT-sh/vertd/releases/download/nightly-8abb761889d3138f5b91401a533bc7e7211a99ff/vertd-linux-x86_64"
     sha256 = "75d7d23ea65b0b5cbbecbfb5dc50a0cdf35543a2f81e40f99f2211f2c1031853"
+
     autoupdate.strategy = "latest_github_release"
+    autoupdate.upstream = "https://github.com/VERT-sh/vertd"
 
     [resources.system_user]
 
