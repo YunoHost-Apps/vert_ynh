@@ -21,7 +21,7 @@ fund = "https://donations.vert.sh"
 [integration]
 yunohost = ">= 12.1.17"
 helpers_version = "2.1"
-architectures = "all"
+architectures = "amd64"
 multi_instance = true
 
 ldap = false
@@ -54,11 +54,12 @@ ram.runtime = "50M"
     rename = "vertd"
     in_subdir = false
     extract = false
-    url = "https://github.com/VERT-sh/vertd/archive/refs/tags/1.0.tar.gz"
-    sha256 = "f3bac3ca102d557d7dbb6aa4f2b84ac524700c82c2d47c686a6b448d07261f2c"
+    url = "https://github.com/VERT-sh/vertd/releases/download/nightly-8abb761889d3138f5b91401a533bc7e7211a99ff/vertd-linux-x86_64"
+    sha256 = "75d7d23ea65b0b5cbbecbfb5dc50a0cdf35543a2f81e40f99f2211f2c1031853"
 
     autoupdate.strategy = "latest_github_release"
     autoupdate.upstream = "https://github.com/VERT-sh/vertd"
+    autoupdate.asset.amd64 = "vertd-linux-x86_64"
 
     [resources.system_user]
 
