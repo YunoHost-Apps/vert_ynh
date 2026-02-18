@@ -50,16 +50,24 @@ ram.runtime = "50M"
     autoupdate.upstream = "https://github.com/VERT-sh/VERT"
     autoupdate.strategy = "latest_github_commit"
 
-    [resources.sources.vertd]
+    [resources.sources.vertd_prebuilt]
     rename = "vertd"
     in_subdir = false
     extract = false
-    url = "https://github.com/VERT-sh/vertd/releases/download/nightly-8abb761889d3138f5b91401a533bc7e7211a99ff/vertd-linux-x86_64"
-    sha256 = "75d7d23ea65b0b5cbbecbfb5dc50a0cdf35543a2f81e40f99f2211f2c1031853"
+    amd64.url = "https://github.com/VERT-sh/vertd/releases/download/nightly-8abb761889d3138f5b91401a533bc7e7211a99ff/vertd-linux-x86_64"
+    amd64.sha256 = "75d7d23ea65b0b5cbbecbfb5dc50a0cdf35543a2f81e40f99f2211f2c1031853"
 
     autoupdate.strategy = "latest_github_release"
     autoupdate.upstream = "https://github.com/VERT-sh/vertd"
     autoupdate.asset.amd64 = "vertd-linux-x86_64"
+
+
+    [resources.sources.vertd_source]
+    in_subdir = true
+    extract = true
+    amd64.url = "https://github.com/VERT-sh/vertd/archive/ed746da8c0368afbdd3c4ad3cf74bc683efb3666.tar.gz"
+    amd64.sha256 = "92956d6b9ba3e5d9126338d7b593314a98723aed7da46df6fd43b656f24dbe9b"
+    autoupdate.strategy = "latest_github_commit"
 
     [resources.system_user]
 
@@ -73,7 +81,7 @@ ram.runtime = "50M"
     packages = "ffmpeg"
 
     [resources.ports]
-    main.default = 24153
+    main.default = 24153    
 
     [resources.nodejs]
     version = "22"
