@@ -78,7 +78,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "ffmpeg"
+    packages = "ffmpeg, pkgconf, libssl-dev"
 
     [resources.ports]
     main.default = 24153    
