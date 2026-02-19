@@ -7,7 +7,7 @@ name = "Vert"
 description.en = "File conversion utility"
 description.fr = "Utilitaire de conversion de fichiers"
 
-version = "2026.02.05~ynh1"
+version = "2026.02.05~ynh2"
 
 maintainers = ["eric_G"]
 
