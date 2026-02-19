@@ -61,7 +61,6 @@ ram.runtime = "50M"
     autoupdate.upstream = "https://github.com/VERT-sh/vertd"
     autoupdate.asset.amd64 = "vertd-linux-x86_64"
 
-
     [resources.sources.vertd_source]
     in_subdir = true
     extract = true
@@ -81,7 +80,7 @@ ram.runtime = "50M"
     packages = "ffmpeg, pkgconf, libssl-dev"
 
     [resources.ports]
-    main.default = 24153    
+    main.default = 24153
 
     [resources.nodejs]
     version = "22"

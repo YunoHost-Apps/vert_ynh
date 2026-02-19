@@ -41,7 +41,7 @@ ynh_script_progression "Compiling binary (it may take a while)..."
 
 debian_version=$(cat /etc/os-release | sed -n 3p | sed -e 's/VERSION_ID="//' -e 's/"//')
 
-# Upstream prebuilt binary requires GLIBC version 2.39 when Debian Bookworm ships 2.36 and Trixie 2.41  
+# Upstream prebuilt binary requires GLIBC version 2.39 when Debian Bookworm ships 2.36 and Trixie 2.41
 if [[ $debian_version -ge 13 ]]; then
     # Use upstream prebuilt version
     ynh_setup_source --dest_dir="$install_dir" --source_id="vertd_prebuilt"
@@ -52,7 +52,7 @@ else
         # Set the build repo up
         ynh_setup_source --dest_dir="$install_dir/vertd_source" --source_id="vertd_source"
         cd vertd_source
-            
+
         # Install Rustup and Cargo
         export PATH="$PATH:$install_dir/.cargo/bin:$install_dir/.local/bin:/usr/local/sbin"
         if [ -e $install_dir/.rustup ]; then
@@ -60,7 +60,7 @@ else
         else
             ynh_hide_warnings ynh_exec_as_app bash -c 'curl -sSf -L https://static.rust-lang.org/rustup.sh | sh -s -- -y --default-toolchain=stable --profile=minimal'
         fi
-             
+
         # Create config file to mimit GLIBC symbols to the version 2.36 of the lib
         echo 'GLIBC_2.36 {'    > glibc.version
         echo '    global: *;' >> glibc.version
@@ -92,6 +92,9 @@ pushd "$install_dir"
     ynh_hide_warnings bun install
     ynh_hide_warnings bun run build
 popd
+
+chown $app:www-data "$install_dir" #just to allow www-data access child 'build' dir
+chown -R $app:www-data "$install_dir/build"
 
 #=================================================
 # START SYSTEMD SERVICE
