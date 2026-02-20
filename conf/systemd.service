@@ -10,6 +10,7 @@ WorkingDirectory=__INSTALL_DIR__/
 ExecStart=__INSTALL_DIR__/vertd
 #StandardOutput=append:/var/log/__APP__/__APP__.log
 #StandardError=inherit
+Environment="XDG_RUNTIME_DIR=/tmp/__APP__"
 
 # Sandboxing options to harden security
 # Details for these options: https://www.freedesktop.org/software/systemd/man/systemd.exec.html
