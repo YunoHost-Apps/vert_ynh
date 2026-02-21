@@ -35,9 +35,9 @@ ynh_config_add_systemd
 yunohost service add "$app" --description="Vertd, video conversion services" --log="/var/log/$app/$app.log"
 
 #=================================================
-# BUILD VERTD
+# BUILD VERTD (VIDEO CONVERSION BACK-END)
 #=================================================
-ynh_script_progression "Compiling binary (it may take a while)..."
+ynh_script_progression "Installing back-end (it may take a while)..."
 
 debian_version=$(cat /etc/os-release | sed -n 3p | sed -e 's/VERSION_ID="//' -e 's/"//')
 
@@ -83,9 +83,9 @@ fi
 chmod +x "$install_dir/vertd"
 
 #=================================================
-# INSTALL VERT
+# INSTALL VERT (FRONT-END)
 #=================================================
-ynh_script_progression "Installing the app..."
+ynh_script_progression "Installing app front-end..."
 
 pushd "$install_dir"
     ynh_hide_warnings npm install -g bun
