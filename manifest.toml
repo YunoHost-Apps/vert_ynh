@@ -43,30 +43,28 @@ ram.runtime = "200M"
 
     [resources.sources]
 
-    [resources.sources.main]
-    url = "https://github.com/VERT-sh/VERT/archive/897ae567027f326e6a605808981e74c0e897ef70.tar.gz"
-    sha256 = "fe882e78ccce8740501c8d90efcdf6be9b6fea7679bd4fc2c3a213020ff7c4e1"
+	    [resources.sources.main]
+	    url = "https://github.com/VERT-sh/VERT/archive/897ae567027f326e6a605808981e74c0e897ef70.tar.gz"
+	    sha256 = "fe882e78ccce8740501c8d90efcdf6be9b6fea7679bd4fc2c3a213020ff7c4e1"
     
-    autoupdate.upstream = "https://github.com/VERT-sh/VERT"
-    autoupdate.strategy = "latest_github_commit"
+	    autoupdate.upstream = "https://github.com/VERT-sh/VERT"
+	    autoupdate.strategy = "latest_github_commit"
 
-    [resources.sources.vertd_prebuilt]
-    rename = "vertd"
-    in_subdir = false
-    extract = false
-    amd64.url = "https://github.com/VERT-sh/vertd/releases/download/nightly-8abb761889d3138f5b91401a533bc7e7211a99ff/vertd-linux-x86_64"
-    amd64.sha256 = "75d7d23ea65b0b5cbbecbfb5dc50a0cdf35543a2f81e40f99f2211f2c1031853"
+	    [resources.sources.vertd_source]
+	    url = "https://github.com/VERT-sh/vertd/archive/ed746da8c0368afbdd3c4ad3cf74bc683efb3666.tar.gz"
+	    sha256 = "92956d6b9ba3e5d9126338d7b593314a98723aed7da46df6fd43b656f24dbe9b"
 
-    autoupdate.strategy = "latest_github_release"
-    autoupdate.upstream = "https://github.com/VERT-sh/vertd"
-    autoupdate.asset.amd64 = "vertd-linux-x86_64"
+	    autoupdate.upstream = "https://github.com/VERT-sh/vertd"
+	    autoupdate.strategy = "latest_github_commit"
 
-    [resources.sources.vertd_source]
-    in_subdir = true
-    extract = true
-    amd64.url = "https://github.com/VERT-sh/vertd/archive/ed746da8c0368afbdd3c4ad3cf74bc683efb3666.tar.gz"
-    amd64.sha256 = "92956d6b9ba3e5d9126338d7b593314a98723aed7da46df6fd43b656f24dbe9b"
-    autoupdate.strategy = "latest_github_commit"
+	    [resources.sources.vertd_prebuilt]
+	    rename = "vertd"
+	    format = "binary"
+	    url = "https://github.com/VERT-sh/vertd/releases/download/nightly-8abb761889d3138f5b91401a533bc7e7211a99ff/vertd-linux-x86_64"
+	    sha256 = "75d7d23ea65b0b5cbbecbfb5dc50a0cdf35543a2f81e40f99f2211f2c1031853"
+	    #autoupdate.strategy = "latest_github_release"
+	    #autoupdate.upstream = "https://github.com/VERT-sh/vertd"
+	    #autoupdate.asset.amd64 = "vertd-linux-x86_64"
 
     [resources.system_user]
 
