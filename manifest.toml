@@ -62,6 +62,7 @@ ram.runtime = "200M"
 	    format = "binary"
 	    url = "https://github.com/VERT-sh/vertd/releases/download/nightly-8abb761889d3138f5b91401a533bc7e7211a99ff/vertd-linux-x86_64"
 	    sha256 = "75d7d23ea65b0b5cbbecbfb5dc50a0cdf35543a2f81e40f99f2211f2c1031853"
+		
 	    #autoupdate.strategy = "latest_github_release"
 	    #autoupdate.upstream = "https://github.com/VERT-sh/vertd"
 	    #autoupdate.asset.amd64 = "vertd-linux-x86_64"
