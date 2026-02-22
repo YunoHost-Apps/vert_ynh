@@ -20,10 +20,6 @@ ynh_script_progression "Upgrading source files..."
 
 ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".env"
 
-ynh_setup_source --dest_dir="$install_dir" --source_id="vertd"
-
-chmod +x "$install_dir/vertd"
-
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
@@ -43,15 +39,66 @@ ynh_config_add_systemd
 yunohost service add "$app" --description="Vertd, video conversion services" --log="/var/log/$app/$app.log"
 
 #=================================================
-# INSTALL VERT
+# BUILD VERTD (VIDEO CONVERSION BACK-END)
 #=================================================
-ynh_script_progression "Installing the app..."
+ynh_script_progression "Installing back-end (it may take a while)..."
+
+debian_version=$(cat /etc/os-release | sed -n 3p | sed -e 's/VERSION_ID="//' -e 's/"//')
+
+# Upstream prebuilt binary requires GLIBC version 2.39 when Debian Bookworm ships 2.36 and Trixie 2.41
+if [[ $debian_version -ge 13 ]]; then
+    # Use upstream prebuilt version
+    ynh_setup_source --dest_dir="$install_dir" --source_id="vertd_prebuilt"
+else
+    # Build locally and lower GLIBC requirements
+    pushd "$install_dir"
+
+        # Set the build repo up
+        ynh_setup_source --dest_dir="$install_dir/vertd_source" --source_id="vertd_source"
+        cd vertd_source
+
+        # Install Rustup and Cargo
+        export PATH="$PATH:$install_dir/.cargo/bin:$install_dir/.local/bin:/usr/local/sbin"
+        if [ -e $install_dir/.rustup ]; then
+            ynh_hide_warnings ynh_exec_as_app PATH=$PATH rustup update
+        else
+            ynh_hide_warnings ynh_exec_as_app bash -c 'curl -sSf -L https://static.rust-lang.org/rustup.sh | sh -s -- -y --default-toolchain=stable --profile=minimal'
+        fi
+
+        # Create config file to mimit GLIBC symbols to the version 2.36 of the lib
+        echo 'GLIBC_2.36 {'    > glibc.version
+        echo '    global: *;' >> glibc.version
+        echo '};'             >> glibc.version
+
+        # Build
+        chown -R $app:$app "$install_dir"
+        ynh_hide_warnings ynh_exec_as_app bash -c "
+            source \"$install_dir/.cargo/env\"
+            RUSTFLAGS=\"-C link-arg=-Wl,--version-script=$install_dir/vertd_source/glibc.version\" \"$install_dir/.cargo/bin/cargo\" build --release
+        "
+
+        # Clean
+        cd "$install_dir"
+        cp -af vertd_source/target/release/vertd ./vertd
+        ynh_safe_rm vertd_source
+    popd
+fi
+
+chmod +x "$install_dir/vertd"
+
+#=================================================
+# INSTALL VERT (FRONT-END)
+#=================================================
+ynh_script_progression "Installing app front-end..."
 
 pushd "$install_dir"
-	ynh_hide_warnings npm install -g bun
-	ynh_hide_warnings bun install
- 	ynh_hide_warnings bun run build
+    ynh_hide_warnings npm install -g bun
+    ynh_hide_warnings bun install
+    ynh_hide_warnings bun run build
 popd
+
+chown $app:www-data "$install_dir" #just to allow www-data access child 'build' dir
+chown -R $app:www-data "$install_dir/build"
 
 #=================================================
 # START SYSTEMD SERVICE
