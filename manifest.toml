@@ -22,7 +22,7 @@ fund = "https://donations.vert.sh"
 yunohost = ">= 12.1.17"
 helpers_version = "2.1"
 architectures = ['amd64']
-multi_instance = true
+multi_instance = false
 
 ldap = false
 sso = false
@@ -37,7 +37,7 @@ ram.runtime = "200M"
 
     [install.init_main_permission]
     type = "group"
-    default = "visitors"
+    default = "all_users"
 
 [resources]
 
