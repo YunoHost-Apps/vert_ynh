@@ -37,7 +37,7 @@ ram.runtime = "200M"
 
     [install.init_main_permission]
     type = "group"
-    default = "visitors"
+    default = "all_users"
 
 [resources]
 
@@ -80,7 +80,6 @@ ram.runtime = "200M"
     packages = "ffmpeg, pkgconf, libssl-dev"
 
     [resources.ports]
-    main.default = 24153
 
     [resources.nodejs]
     version = "22"
