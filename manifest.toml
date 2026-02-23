@@ -58,6 +58,7 @@ ram.runtime = "200M"
     amd64.sha256 = "75d7d23ea65b0b5cbbecbfb5dc50a0cdf35543a2f81e40f99f2211f2c1031853"
 
     autoupdate.strategy = "latest_github_release"
+    autoupdate.version_regex = "^Nightly build #(.*)$"
     autoupdate.upstream = "https://github.com/VERT-sh/vertd"
     autoupdate.asset.amd64 = "vertd-linux-x86_64"
 
