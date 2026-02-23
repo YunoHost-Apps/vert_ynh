@@ -32,7 +32,7 @@ ynh_replace --match="$old_domain" --replace="$new_domain" --file="$install_dir/.
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service="$app" --action="start" --log_path=systemd ==wait_until="http server listening on"
+ynh_systemctl --service="$app" --action="start" --log_path=systemd --wait_until="http server listening on"
 
 #=================================================
 # END OF SCRIPT
